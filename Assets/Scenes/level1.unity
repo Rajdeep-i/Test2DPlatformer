@@ -886,41 +886,13 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3297578984624375504, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
-      propertyPath: m_DefaultActionMap
-      value: df70fa95-8a34-4494-b137-73ab6b9c7d37
-      objectReference: {fileID: 0}
-    - target: {fileID: 3297578984624375504, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
-      propertyPath: m_NotificationBehavior
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3297578984624375504, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3297578984624375504, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3297578984624375504, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 7677798689694763148}
     - target: {fileID: 3297578984624375504, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3297578984624375504, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnMove
-      objectReference: {fileID: 0}
-    - target: {fileID: 3297578984624375504, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3297578984624375504, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7677798689694763148}
     - target: {fileID: 8273759852284846042, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
       propertyPath: m_GravityScale
       value: 0
@@ -951,6 +923,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 5
+  runSpeed: 8
+  isMoving: 0
+  isRunning: 0
 --- !u!4 &7677798689694763152 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1861348880476122713, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
