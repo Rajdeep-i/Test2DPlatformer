@@ -38051,18 +38051,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2101763100184279277, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
+      propertyPath: walkSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101763100184279277, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
+      propertyPath: jumpImpules
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2986374352170300528, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297578984624375504, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297578984624375504, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3297578984624375504, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 7677798689694763148}
     - target: {fileID: 3297578984624375504, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7677798689694763148}
+    - target: {fileID: 3297578984624375504, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
       propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 7677798689694763148}
+    - target: {fileID: 3297578984624375504, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297578984624375504, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297578984624375504, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297578984624375504, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4874752264133423421, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
+      propertyPath: _isGround
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8273759852284846042, guid: 3b44d0585059d5c48a4a54592289a547, type: 3}
       propertyPath: m_GravityScale
       value: 1
