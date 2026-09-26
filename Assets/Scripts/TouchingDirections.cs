@@ -43,7 +43,7 @@ public class TouchingDirections : MonoBehaviour
         }
         private set
         {
-            _isGround = value;
+            _isOnCeiling = value;
             animator.SetBool(AnimationStrings.isOnCeiling, value);
         }
     }
