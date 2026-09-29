@@ -1,10 +1,13 @@
 using UnityEngine;
+using System;
 
 public class Health : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
 
     public int CurrentHealth { get; private set; }
+
+    public event Action OnDeath;
 
     private void Awake()
     {
@@ -20,7 +23,12 @@ public class Health : MonoBehaviour
             CurrentHealth = 0;
         }
 
-        Debug.Log("Player Health: " + CurrentHealth);
+        Debug.Log("Health: " + CurrentHealth);
+
+        if (CurrentHealth <= 0)
+        {
+            OnDeath?.Invoke();
+        }
     }
 
     public void Heal(int amount)

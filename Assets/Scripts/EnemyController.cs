@@ -14,10 +14,16 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float stopDistance = 0.8f;
     [SerializeField] private Transform player;
 
+    [Header("Attack")]
+    [SerializeField] private float attackCooldown = 1f;
+    [SerializeField] private int attackDamage = 20;
+
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private Collider2D enemyCollider;
+
+    private PlayerHealth playerHealth;
 
     private Vector3 startPosition;
 
@@ -26,6 +32,8 @@ public class EnemyController : MonoBehaviour
     private float patrolWaitTimer = 0f;
     private bool isWaitingAtPatrolPoint = false;
 
+    private float attackTimer = 0f;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -33,13 +41,19 @@ public class EnemyController : MonoBehaviour
         animator = GetComponent<Animator>();
         enemyCollider = GetComponent<Collider2D>();
 
+        // Find PlayerHealth from the assigned player
         if (player != null)
         {
+            playerHealth = player.GetComponent<PlayerHealth>();
+
             Collider2D playerCollider = player.GetComponent<Collider2D>();
 
-            if (playerCollider != null)
+            if (playerCollider != null && enemyCollider != null)
             {
-                Physics2D.IgnoreCollision(enemyCollider, playerCollider);
+                Physics2D.IgnoreCollision(
+                    enemyCollider,
+                    playerCollider
+                );
             }
         }
     }
@@ -51,17 +65,35 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        animator.SetFloat("Speed", Mathf.Abs(rb.linearVelocity.x));
+        // Reduce attack cooldown
+        if (attackTimer > 0f)
+        {
+            attackTimer -= Time.fixedDeltaTime;
+        }
 
+        // Update movement animation
+        if (animator != null)
+        {
+            animator.SetFloat(
+                "Speed",
+                Mathf.Abs(rb.linearVelocity.x)
+            );
+        }
+
+        // No player assigned
         if (player == null)
         {
             Patrol();
             return;
         }
 
-        float distanceToPlayer =
-            Vector2.Distance(transform.position, player.position);
+        // Calculate distance to player
+        float distanceToPlayer = Vector2.Distance(
+            transform.position,
+            player.position
+        );
 
+        // Player inside detection range
         if (distanceToPlayer <= detectionRange)
         {
             ChasePlayer();
@@ -72,9 +104,13 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    // =========================
+    // PATROL
+    // =========================
+
     private void Patrol()
     {
-        // Wait at the patrol point
+        // Wait at patrol point
         if (isWaitingAtPatrolPoint)
         {
             rb.linearVelocity = new Vector2(
@@ -88,17 +124,18 @@ public class EnemyController : MonoBehaviour
             {
                 isWaitingAtPatrolPoint = false;
 
-                // Turn around after waiting
+                // Turn around
                 moveDirection *= -1;
             }
 
             return;
         }
 
+        // Distance from starting position
         float distanceFromStart =
             transform.position.x - startPosition.x;
 
-        // Check only the patrol point we are currently moving toward
+        // Check if patrol point is reached
         bool reachedPatrolPoint =
             (moveDirection == -1 &&
              distanceFromStart <= -patrolDistance)
@@ -122,30 +159,59 @@ public class EnemyController : MonoBehaviour
         Move();
     }
 
+    // =========================
+    // CHASE PLAYER
+    // =========================
+
     private void ChasePlayer()
     {
-        // Stop patrolling when chasing
+        // Stop patrol waiting
         isWaitingAtPatrolPoint = false;
         patrolWaitTimer = 0f;
 
+        // Horizontal distance to player
         float horizontalDistance =
-            player.position.x - transform.position.x;
+            player.position.x -
+            transform.position.x;
 
-        // Stop when close enough to the player
+        // Player is close enough to attack
         if (Mathf.Abs(horizontalDistance) <= stopDistance)
         {
+            // Stop horizontal movement
             rb.linearVelocity = new Vector2(
                 0f,
                 rb.linearVelocity.y
             );
 
+            // Face the player
+            if (horizontalDistance > 0)
+            {
+                moveDirection = 1;
+            }
+            else if (horizontalDistance < 0)
+            {
+                moveDirection = -1;
+            }
+
+            UpdateFacing();
+
+            // Attack
+            if (attackTimer <= 0f)
+            {
+                Attack();
+
+                attackTimer = attackCooldown;
+            }
+
             return;
         }
 
+        // Player is to the right
         if (horizontalDistance > 0)
         {
             moveDirection = 1;
         }
+        // Player is to the left
         else
         {
             moveDirection = -1;
@@ -153,6 +219,30 @@ public class EnemyController : MonoBehaviour
 
         Move();
     }
+
+    // =========================
+    // ATTACK
+    // =========================
+
+    private void Attack()
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger("Attack");
+        }
+    }
+
+    public void DealAttackDamage()
+    {
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(attackDamage);
+        }
+    }
+
+    // =========================
+    // MOVEMENT
+    // =========================
 
     private void Move()
     {
@@ -164,13 +254,19 @@ public class EnemyController : MonoBehaviour
         UpdateFacing();
     }
 
+    // =========================
+    // FACING
+    // =========================
+
     private void UpdateFacing()
     {
         // Goblin artwork originally faces left.
         // Flip when moving right.
+
         if (spriteRenderer != null)
         {
-            spriteRenderer.flipX = moveDirection == 1;
+            spriteRenderer.flipX =
+                moveDirection == 1;
         }
     }
 }

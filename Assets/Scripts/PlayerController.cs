@@ -80,7 +80,6 @@ public class PlayerController : MonoBehaviour
         }
         }
 
-    Rigidbody2D rigidbody2D;
     Animator animator;
 
     private void Awake()
