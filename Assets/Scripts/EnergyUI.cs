@@ -11,9 +11,6 @@ public class EnergyUI : MonoBehaviour
         if (playerEnergy == null || energyText == null)
             return;
 
-        energyText.text = "ENERGY: " +
-                          playerEnergy.CurrentEnergy +
-                          " / " +
-                          playerEnergy.MaxEnergy;
+        energyText.text = playerEnergy.CurrentEnergy.ToString();
     }
 }

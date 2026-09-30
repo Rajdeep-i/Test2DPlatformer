@@ -34,10 +34,8 @@ public class PlayerDeath : MonoBehaviour
         }
     }
 
-    // =========================
     // DEATH
-    // =========================
-
+    
     private void Die()
     {
         isDead = true;
@@ -64,10 +62,8 @@ public class PlayerDeath : MonoBehaviour
         StartCoroutine(RespawnAfterDeath());
     }
 
-    // =========================
     // RESPAWN
-    // =========================
-
+   
     private IEnumerator RespawnAfterDeath()
     {
         yield return new WaitForSeconds(deathAnimationDuration);
@@ -114,10 +110,8 @@ public class PlayerDeath : MonoBehaviour
         Debug.Log("Player Respawned");
     }
 
-    // =========================
     // ENABLE COLLIDER
-    // =========================
-
+   
     private IEnumerator EnableColliderAfterRespawn()
     {
         yield return new WaitForFixedUpdate();
@@ -158,9 +152,7 @@ public class PlayerDeath : MonoBehaviour
         Debug.Log("Player returned to normal state");
     }
 
-    // =========================
     // CHECKPOINT
-    // =========================
 
     public void SetRespawnPoint(Transform newRespawnPoint)
     {
