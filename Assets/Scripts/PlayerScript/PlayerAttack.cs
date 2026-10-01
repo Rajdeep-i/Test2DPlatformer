@@ -35,6 +35,20 @@ public class PlayerAttack : MonoBehaviour
         Attack();
     }
 
+    public void MobileAttack()
+    {
+        if (Time.time < nextAttackTime)
+            return;
+
+        nextAttackTime = Time.time + attackCooldown;
+
+        // Play attack animation
+        animator.SetTrigger("Attack");
+
+        // Deal damage
+        Attack();
+    }
+
     private void Attack()
     {
         Debug.Log("Player Attack!");

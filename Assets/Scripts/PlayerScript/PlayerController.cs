@@ -107,6 +107,29 @@ public class PlayerController : MonoBehaviour
         SetFacingDirection(moveInput);
     }
 
+    public void MobileMoveLeft()
+    {
+        moveInput = new Vector2(-1, 0);
+        IsMoving = true;
+        IsRunning = true;
+        SetFacingDirection(moveInput);
+    }
+
+    public void MobileMoveRight()
+    {
+        moveInput = new Vector2(1, 0);
+        IsMoving = true;
+        IsRunning = true;
+        SetFacingDirection(moveInput);
+    }
+
+    public void MobileStop()
+    {
+        moveInput = Vector2.zero;
+        IsMoving = false;
+        IsRunning = false;
+    }
+
     private void SetFacingDirection(Vector2 moveInput)
     {
         if(moveInput.x > 0 && !IsFacingRight)
@@ -136,6 +159,15 @@ public class PlayerController : MonoBehaviour
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.started && touchingDirections.IsGround)
+        {
+            animator.SetTrigger(AnimationStrings.jump);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpImpules);
+        }
+    }
+
+    public void MobileJump()
+    {
+        if (touchingDirections.IsGround)
         {
             animator.SetTrigger(AnimationStrings.jump);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpImpules);
